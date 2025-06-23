@@ -1,5 +1,7 @@
 import 'package:di_app/application/bootstrap/bloc_bootstrap.dart';
+import 'package:di_app/application/di/setup_root_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import 'application/bootstrap/app_bootstrap.dart';
 
@@ -12,7 +14,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBootstrap(child: const AppBootstrap());
+    setupRootDI();
+    return const AppBootstrap();
+
+    //return BlocBootstrap(child: const AppBootstrap());
   }
 }
 

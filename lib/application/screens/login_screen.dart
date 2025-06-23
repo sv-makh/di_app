@@ -1,5 +1,7 @@
+import 'package:di_app/application/di/setup_app_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import '../bloc/user_profile/user_profile_bloc.dart';
@@ -43,7 +45,9 @@ class LoginScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                context.read<UserProfileBloc>().add(GetUserProfile());
+                setupAppDI();
+
+                getIt<UserProfileBloc>(param1: context).add(GetUserProfile());
                 context.push(RouterPaths.appScreen.dest);
               },
               child: Text("Sign in"),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../bloc/user_profile/user_profile_bloc.dart';
 import '../router/router_paths.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -41,6 +43,7 @@ class LoginScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
+                context.read<UserProfileBloc>().add(GetUserProfile());
                 context.push(RouterPaths.appScreen.dest);
               },
               child: Text("Sign in"),

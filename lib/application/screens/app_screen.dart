@@ -1,5 +1,9 @@
+import 'package:di_app/application/bloc/auth/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../bloc/user_profile/user_profile_bloc.dart';
 
 class AppScreen extends StatelessWidget {
   const AppScreen({super.key});
@@ -14,6 +18,8 @@ class AppScreen extends StatelessWidget {
             Text(""),
             TextButton(
               onPressed: () {
+                context.read<UserProfileBloc>().add(ResetUserProfile());
+                context.read<AuthBloc>().add(Logout());
                 context.pop();
               },
               child: Text("Logout"),

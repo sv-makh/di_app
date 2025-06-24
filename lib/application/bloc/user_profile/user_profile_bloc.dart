@@ -19,7 +19,7 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
   }
 
   Future<void> _getProfileHandler(GetUserProfile event, _Emit emit) async {
-    emit(state.copyWith(userName: event.name.isNotEmpty ? event.name : "some name"));
+    emit(state.copyWith(userName: event.name.isNotEmpty ? event.name : "no name"));
   }
 
   Future<void> _resetState(ResetUserProfile event, _Emit emit) async {

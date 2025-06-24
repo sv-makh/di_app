@@ -26,7 +26,7 @@ class AppScreen extends StatelessWidget {
                 _getIt.popScope();
 
                 //context.read<UserProfileBloc>().add(ResetUserProfile());
-                _getIt<AuthBloc>().add(Logout());
+                context.read<AuthBloc>().add(Logout());
                 context.pop();
               },
               child: Text("Logout"),

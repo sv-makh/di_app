@@ -8,6 +8,4 @@ void setupAppDI() {
   getIt.pushNewScope();
 
   getIt.registerFactoryParam<UserProfileBloc,BuildContext,void>((context, _) => UserProfileBloc(context));
-
-  //getIt.registerFactory<UserProfileBloc>(() => UserProfileBloc());
 }

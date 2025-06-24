@@ -14,12 +14,12 @@ final appRouter = ShellRoute(
     GoRoute(
       name: RouterPaths.loginScreen.name,
       path: RouterPaths.loginScreen.path,
-      builder: (context, state) => const LoginScreen(),
+      builder: (context, state) => LoginScreen(),
     ),
     GoRoute(
       name: RouterPaths.appScreen.name,
       path: RouterPaths.appScreen.path,
-      builder: (context, state) => const AppScreen(),
+      builder: (context, state) => AppScreen(),
     ),
   ],
 );

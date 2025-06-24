@@ -8,7 +8,9 @@ import '../bloc/user_profile/user_profile_bloc.dart';
 import '../router/router_paths.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,26 +30,16 @@ class LoginScreen extends StatelessWidget {
               ),
               child: TextField(
                 decoration: InputDecoration.collapsed(hintText: "login"),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(20),
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2,
-                    color: Colors.blue,
-                  )
-              ),
-              child: TextField(
-                decoration: InputDecoration.collapsed(hintText: "password"),
+                controller: _controller,
               ),
             ),
             TextButton(
               onPressed: () {
                 setupAppDI();
 
-                getIt<UserProfileBloc>(param1: context).add(GetUserProfile());
+                final userProfileBloc = context.read<UserProfileBloc>();
+                userProfileBloc.add(GetUserProfile(_controller.text));
+
                 context.push(RouterPaths.appScreen.dest);
               },
               child: Text("Sign in"),

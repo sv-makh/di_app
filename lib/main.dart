@@ -15,9 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     setupRootDI();
-    return const AppBootstrap();
 
-    //return BlocBootstrap(child: const AppBootstrap());
+    return BlocBootstrap(child: const AppBootstrap());
   }
 }
 

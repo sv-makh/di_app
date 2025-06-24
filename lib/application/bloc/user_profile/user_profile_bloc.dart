@@ -2,7 +2,6 @@ import "dart:io";
 
 import "package:bloc/bloc.dart";
 import "package:equatable/equatable.dart";
-import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 
 part "user_profile_event.dart";
@@ -20,7 +19,7 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
   }
 
   Future<void> _getProfileHandler(GetUserProfile event, _Emit emit) async {
-    emit(UserProfileState(userName: "some name"));
+    emit(state.copyWith(userName: event.name.isNotEmpty ? event.name : "some name"));
   }
 
   Future<void> _resetState(ResetUserProfile event, _Emit emit) async {

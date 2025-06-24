@@ -1,16 +1,52 @@
-# di_app
+# DI
 
-A new Flutter project.
+## scopes
 
-## Getting Started
+### root scope
 
-This project is a starting point for a Flutter application.
+- AuthBloc
+- Talker
+- SettingsBloc
+- возможно LCColors
+- сервисы
 
-A few resources to get you started if this is your first Flutter project:
+### app scope
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- остальные блоки
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## сделать
+
+- класс DI
+
+```dart
+final _getIt = GetIt.instance;
+
+class DI {
+  static void setupRootDI() {
+    _getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
+    ...
+  }
+
+  static void setupAppDI() {
+    _getIt.pushNewScope();
+    
+    _getIt.registerFactory<UserProfileBloc>(
+        () => UserProfileBloc(_getIt<SomeService>()));
+    ...
+  }
+
+  static void disposeAppScope() {
+    _getIt.popScope();
+  }
+}
+```
+
+- сервисы, использующиеся в блоках - переделать как параметры этих блоков
+- вызов setupRootDI() - в main.dart, setupAppDI() - при логине, disposeAppScope() - при логауте
+- провайдить блоки следующим образом
+
+```dart
+        BlocProvider(
+          create: (_) => _getIt.get<AuthBloc>(),
+        ),
+```

@@ -5,9 +5,14 @@ abstract class UserProfileEvent extends Equatable {
 }
 
 class GetUserProfile extends UserProfileEvent {
+  final String name;
+
+  const GetUserProfile(this.name);
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [name];
 }
+
 class ResetUserProfile extends UserProfileEvent {
   @override
   List<Object?> get props => [];

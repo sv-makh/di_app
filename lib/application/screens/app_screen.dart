@@ -7,10 +7,14 @@ import 'package:go_router/go_router.dart';
 import '../bloc/user_profile/user_profile_bloc.dart';
 
 class AppScreen extends StatelessWidget {
-  const AppScreen({super.key});
+  AppScreen({super.key});
+
+  final _getIt = GetIt.instance;
 
   @override
   Widget build(BuildContext context) {
+    final userProfileBloc = context.read<UserProfileBloc>();
+
     return Scaffold(
       appBar: AppBar(title: Text("App screen")),
       body: Center(
@@ -19,14 +23,17 @@ class AppScreen extends StatelessWidget {
             Text(""),
             TextButton(
               onPressed: () {
-                final getIt = GetIt.instance;
-                getIt.popScope();
+                _getIt.popScope();
 
                 //context.read<UserProfileBloc>().add(ResetUserProfile());
-                getIt<AuthBloc>().add(Logout());
+                _getIt<AuthBloc>().add(Logout());
                 context.pop();
               },
               child: Text("Logout"),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0),
+              child: Text("userName: ${userProfileBloc.state.userName}"),
             ),
           ],
         ),
